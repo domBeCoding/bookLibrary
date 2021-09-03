@@ -1,2 +1,3 @@
 include 'book-library-service'
+include 'functional-tests'
 
