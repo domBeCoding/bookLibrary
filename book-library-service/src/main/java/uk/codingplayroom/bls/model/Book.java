@@ -1,4 +1,4 @@
-package uk.codingplayroom.bls.service.controller;
+package uk.codingplayroom.bls.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,4 +11,5 @@ public class Book {
     private String title;
     private String author;
     private int pages;
+    private BookGenre genre;
 }

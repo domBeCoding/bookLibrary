@@ -1,7 +1,9 @@
-package uk.codingplayroom.bls.service.controller;
+package uk.codingplayroom.bls.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import uk.codingplayroom.bls.model.Book;
+import uk.codingplayroom.bls.model.BookGenre;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +29,8 @@ public class BookService {
 
     @Bean
     public void generateBookList() {
-        Book book1 = new Book("harrypotter", "jkrowling", 2500);
-        Book book2 = new Book("percyjackson", "rickriodian", 2500);
+        Book book1 = new Book("harrypotter", "jkrowling", 2500, BookGenre.FANTASY);
+        Book book2 = new Book("percyjackson", "rickriodian", 2500, BookGenre.FANTASY);
 
         bookList.add(book1);
         bookList.add(book2);
