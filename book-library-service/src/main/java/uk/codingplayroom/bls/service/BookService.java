@@ -18,27 +18,6 @@ public class BookService {
     private Book emptyBook;
     private List<Book> emptyBookList;
 
-//    public List<Book> returnAllBooks() {
-//        return bookList;
-//    }
-
-//    public Book returnBookByTitle(String requestedTitle) {
-//        Optional<Book> book = bookList.stream()
-//                .filter((x) -> x.getTitle().equals(requestedTitle))
-//                .findFirst();
-//
-//        return book.orElseGet(() -> emptyBook);
-//    }
-
-//    @Bean
-//    public void generateBookList() {
-//        Book book1 = new Book(1, "harrypotter", "jkrowling", 2500, BookGenre.FANTASY);
-//        Book book2 = new Book(2, "percyjackson", "rickriodian", 2500, BookGenre.FANTASY);
-//
-//        bookList.add(book1);
-//        bookList.add(book2);
-//    }
-
     public Book returnBookById(int id) {
         return bookRepository.findById(id).orElse(emptyBook);
     }
