@@ -18,13 +18,28 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getBookForId(int id) {
+        return ResponseEntity.ok(bookService.returnBookById(id));
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Book>> getAllBooks() {
         return ResponseEntity.ok(bookService.returnAllBooks());
     }
 
+    @GetMapping("/all/{genre}")
+    public ResponseEntity<List<Book>> getAllBooksForGenre(@PathVariable("genre") String genre) {
+        return ResponseEntity.ok(bookService.returnBooksByGenre(genre));
+    }
+
     @GetMapping("/{bookTitle}")
     public ResponseEntity<Book> getABook(@PathVariable("bookTitle") String requestedTitle) {
-        return ResponseEntity.ok(bookService.returnBookByTitle(requestedTitle));
+        return ResponseEntity.ok(bookService.returnBookByTitle(requestedTitle.toLowerCase()));
+    }
+
+    @GetMapping("/all/{author}")
+    public ResponseEntity<List<Book>> getAllBookForAuthor(@PathVariable("author") String author) {
+        return ResponseEntity.ok(bookService.returnBooksByAuthor(author));
     }
 }
