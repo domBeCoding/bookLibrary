@@ -1,3 +1,29 @@
+management:
+  endpoints:
+    web:
+      base-path: "/private"
+      exposure:
+        include: "info,env"
+      path-mapping:
+        prometheus: "metrics"
+  info:
+    env:
+      enabled: true
+    git:
+      mode: "SIMPLE"
+      enabled: true
+
+info:
+  app:
+    name: ${rootProject.name}
+    description: ${description}
+    encoding: ${compileJava.options.getEncoding()}
+    version: ${version}
+    java:
+      target: ${targetCompatibility}
+      source: ${sourceCompatibility}
+
 service:
   host: http://localhost
   port: 8080
+

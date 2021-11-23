@@ -1,8 +1,12 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+
 plugins {
     id 'org.springframework.boot' version '2.5.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'com.gorylenko.gradle-git-properties' version '2.3.1' //plugin for git property details for private/info
 }
+
 
 group 'com.codingPlayroom'
 version '0.0.1-SNAPSHOT'
@@ -18,7 +22,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     annotationProcessor 'org.projectlombok:lombok'
@@ -28,7 +31,30 @@ dependencies {
 
     //h2 database
     runtimeOnly 'com.h2database:h2'
+}
 
+project.ext {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+//enables application.yml to inject values from gradle
+processResources {
+    expand(project.properties)
+}
+
+//build info to private/info endpoint
+springBoot {
+    buildInfo {
+        properties {
+            name = rootProject.name
+            additional = [
+                    host           : InetAddress.localHost.hostName,
+                    hostAddress    : InetAddress.localHost.getHostAddress(),
+                    operatingSystem: DefaultNativePlatform.currentOperatingSystem.getInternalOs().toString()
+            ]
+        }
+    }
 }
 
 test {

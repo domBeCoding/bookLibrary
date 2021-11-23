@@ -1,3 +1,4 @@
+rootProject.name = "Book Library Service"
 include 'book-library-service'
 include 'functional-tests'
 
