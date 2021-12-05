@@ -7,7 +7,6 @@ plugins {
     id 'com.gorylenko.gradle-git-properties' version '2.3.1' //plugin for git property details for private/info
 }
 
-
 group 'com.codingPlayroom'
 version '0.0.1-SNAPSHOT'
 
@@ -21,21 +20,35 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    //test
     implementation 'org.junit.jupiter:junit-jupiter:5.6.0'
+    testImplementation 'org.springframework.security:spring-security-test:5.3.12.RELEASE'
     testImplementation "org.mockito:mockito-core:3.+"
+
+    //lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    //JSON
+    implementation 'org.json:json:20201115'
 
     //h2 database
     runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 }
 
 project.ext {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+}
+
+//this removes error in the JSON file, thought not 100% required
+configurations {
+    testImplementation.exclude group: 'com.vaadin.external.google', module: 'android-json'
 }
 
 //enables application.yml to inject values from gradle
