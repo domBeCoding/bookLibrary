@@ -37,4 +37,11 @@ public class AuthValidationTest {
                 .header("Authorization", "Basic QWRtaW46UGFzc3dvcmQ="))
                 .andExpect(status().is(200));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"/private/status", "/private/info", "/private/env", "/private/metrics"})
+    public void whenUserWithInvalidCredentialsRequestsPrivateEndpoint_thenAccessIsDenied(String privateEndpoint) throws Exception {
+        mockMvc.perform(get(privateEndpoint))
+                .andExpect(status().is(401));
+    }
 }
