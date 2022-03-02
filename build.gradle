@@ -5,8 +5,11 @@ plugins {
 group 'com.codingPlayroom'
 version '0.0.1-SNAPSHOT'
 
+allprojects {
+    group = 'uk.sky.ovp.pcs'
+    description = 'Book Library Service - Rental Book Service For Families'
+}
+
 repositories {
     mavenCentral()
 }
-
-
