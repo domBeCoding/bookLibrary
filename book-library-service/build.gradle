@@ -18,7 +18,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     annotationProcessor 'org.projectlombok:lombok'
@@ -29,6 +28,9 @@ dependencies {
     //h2 database
     runtimeOnly 'com.h2database:h2'
 
+    //book generation
+    implementation 'org.jeasy:easy-random-core:5.0.0'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
 test {

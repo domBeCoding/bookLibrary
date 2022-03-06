@@ -1,9 +1,6 @@
 package uk.codingplayroom.bls.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,4 +27,15 @@ public class Book {
 
     @Column(name = "GENRE")
     private String genre;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookId=" + bookId +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", pages=" + pages +
+                ", genre='" + genre + '\'' +
+                '}';
+    }
 }
